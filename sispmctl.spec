@@ -4,7 +4,7 @@ Release: 19%{?dist}
 Summary: Control Gembird SIS-PM programmable power outlet strips
 License: GPLv2
 URL: http://sispmctl.sourceforge.net/
-Source: http://downloads.sourceforge.net/project/sispmctl/sispmctl/sispmctl-%{version}/sispmctl-%{version}.tar.gz
+Source: http://downloads.sourceforge.net/project/%{name}/%{name}/%{name}-%{version}/%{name}-%{version}.tar.gz
 BuildRequires: make
 BuildRequires: gcc
 BuildRequires: libusb-compat-0.1-devel
@@ -32,9 +32,10 @@ make install DESTDIR=$RPM_BUILD_ROOT INSTALL="install -p"
 %files
 %doc COPYING
 %doc README.md
-%{_bindir}/sispmctl
-%{_mandir}/man1/sispmctl.1*
-%{_docdir}/sispmctl/examples
+%{_bindir}/%{name}
+%{_libdir}/lib%{name}.*
+%{_mandir}/man1/%{name}.1*
+%{_docdir}/%{name}/examples
 
 %changelog
 * Sat Jan 21 2023 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-18
