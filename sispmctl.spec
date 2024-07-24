@@ -1,6 +1,6 @@
 Name: sispmctl
-Version: 4.11
-Release: 20%{?dist}
+Version: 4.12
+Release: 21%{?dist}
 Summary: Control Gembird SIS-PM programmable power outlet strips
 License: GPLv2
 URL: http://sispmctl.sourceforge.net/
