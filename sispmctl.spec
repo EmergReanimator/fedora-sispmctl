@@ -1,13 +1,14 @@
 Name: sispmctl
-Version: 4.12
-Release: 21%{?dist}
+Version: 5.0
+Release: 22%{?dist}
 Summary: Control Gembird SIS-PM programmable power outlet strips
 License: GPLv2
 URL: http://sispmctl.sourceforge.net/
 Source: http://downloads.sourceforge.net/project/%{name}/%{name}/%{name}-%{version}/%{name}-%{version}.tar.gz
-BuildRequires: make
+BuildRequires: meson
+BuildRequires: ninja-build
 BuildRequires: gcc
-BuildRequires: libusb-compat-0.1-devel
+BuildRequires: libusb1-devel
 
 %description
 The sispmctl tool can control Gembird SIS-PM Silver Shield programmable
@@ -22,21 +23,15 @@ and it can handle multiple SIS-PM devices, too.
 %setup -q
 
 %build
-%configure --enable-webless
-make %{?_smp_mflags}
+%meson
+%meson_build
 
 %install
-make install DESTDIR=$RPM_BUILD_ROOT INSTALL="install -p"
-# rm -fr $RPM_BUILD_ROOT%{_libdir}
+%meson_install
 
 %files
-%doc COPYING
-%doc README.md
+%doc README.rst
 %{_bindir}/%{name}
-%{_libdir}/lib%{name}.*
-%{_mandir}/man1/%{name}.1*
-%{_docdir}/%{name}/examples/*
-%{_docdir}/%{name}/artwork/*
 
 %changelog
 * Sat Jan 21 2023 Fedora Release Engineering <releng@fedoraproject.org> - 3.1-18
