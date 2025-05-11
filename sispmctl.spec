@@ -1,10 +1,10 @@
 Name: sispmctl
 Version: 5.0
-Release: 22%{?dist}
+Release: 23%{?dist}
 Summary: Control Gembird SIS-PM programmable power outlet strips
 License: GPLv2
-URL: http://sispmctl.sourceforge.net/
-Source: http://downloads.sourceforge.net/project/%{name}/%{name}/%{name}-%{version}/%{name}-%{version}.tar.gz
+URL: https://github.com/xypron/sispmctl
+Source0: https://github.com/xypron/sispmctl/archive/refs/tags/sispmctl5-2024-05-18.zip
 BuildRequires: meson
 BuildRequires: ninja-build
 BuildRequires: gcc
@@ -20,7 +20,7 @@ the SIS-PM via USB. It can also show the current status of each power socket,
 and it can handle multiple SIS-PM devices, too.
 
 %prep
-%setup -q
+%setup -n %{name}-sispmctl5-2024-05-18
 
 %build
 %meson
@@ -28,6 +28,8 @@ and it can handle multiple SIS-PM devices, too.
 
 %install
 %meson_install
+mkdir -p %{buildroot}/%{_bindir}
+install -m 755 %{builddir}/%{name}-sispmctl5-2024-05-18/%{_vpath_builddir}/%{name} %{buildroot}%{_bindir}/%{name}
 
 %files
 %doc README.rst
